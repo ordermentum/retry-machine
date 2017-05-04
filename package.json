@@ -1,0 +1,50 @@
+{
+  "name": "retry-machine",
+  "version": "0.1.0",
+  "description": "Retry Promises",
+  "main": "lib/index.js",
+  "repository": "git@github.com:ordermentum/prowl.git",
+  "author": "John D'Agostino <john.dagostino@gmail.com>",
+  "license": "Apache-2.0",
+  "files": [
+    "lib/*"
+  ],
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src/ test/",
+    "build:coverage": "nyc check-coverage --statements 74 --branches 60 --functions 66 --lines 72",
+    "test": "NODE_ENV=test nyc npm run spec",
+    "report": "./node_modules/.bin/nyc report --reporter=html",
+    "spec": "./node_modules/.bin/_mocha -R spec ./test/test_helper.js --compilers js:babel-core/register --recursive test/**/*",
+    "build": "babel src --out-dir lib",
+    "prepublish": "yarn run build",
+    "reporter": "nyc --reporter=html yarn run test",
+    "flow": "./node_modules/.bin/flow check"
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-core": "^6.24.1",
+    "babel-eslint": "^7.2.3",
+    "babel-istanbul": "^0.12.2",
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+    "babel-plugin-transform-flow-strip-types": "^6.22.0",
+    "babel-preset-env": "^1.4.0",
+    "babel-preset-flow": "^6.23.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "babel-preset-stage-3": "^6.24.1",
+    "babel-register": "^6.24.1",
+    "chai": "^3.5.0",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.10.3",
+    "express": "^4.15.2",
+    "flow-bin": "^0.45.0",
+    "flow-coverage-report": "^0.3.0",
+    "mocha": "^3.3.0",
+    "nyc": "^10.3.0",
+    "sinon": "^2.1.0"
+  }
+}
