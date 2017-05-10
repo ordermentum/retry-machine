@@ -1,5 +1,7 @@
 # Retry Machine
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/ordermentum/retry-machine.svg)](https://greenkeeper.io/)
+
 Retry Promises
 
 ```javascript
