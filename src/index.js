@@ -29,10 +29,11 @@ function retry(
     /* eslint-disable no-await-in-loop */
     while (attempts > 0) {
       try {
-        logger.info('Retry Machine: ', ...args);
+        logger.info('Retry Machine args: ', ...args);
         result = await promise(...args);
         break;
       } catch (e) {
+        logger.error('Retry Machine error: ', e);
         attempts -= 1;
         await failure(e, attempts);
 
