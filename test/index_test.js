@@ -35,6 +35,30 @@ describe('index', () => {
       expect(response).to.equal('YAY');
       expect(success.callCount).to.equal(1);
     });
+
+    it('stops upon immediate success', async () => {
+      const callback = sandbox.stub();
+      callback.onCall(0).resolves('OH YAY');
+      callback.onCall(1).rejects();
+      callback.onCall(2).resolves('HELLO');
+      callback.onCall(3).rejects();
+      const runner = retry({ max: 5, logger: console });
+      const response = await runner(callback);
+      expect(response).to.equal('OH YAY');
+      expect(callback.callCount).to.equal(1);
+    });
+
+    it('stops upon eventual success', async () => {
+      const callback = sandbox.stub();
+      callback.onCall(0).rejects();
+      callback.onCall(1).rejects();
+      callback.onCall(2).returns(Promise.resolve('HELLO'));
+      callback.onCall(3).rejects();
+      const runner = retry({ max: 5, delay: 10, logger: console });
+      const response = await runner(callback);
+      expect(response).to.equal('HELLO');
+      expect(callback.callCount).to.equal(3);
+    });
   });
 
 
