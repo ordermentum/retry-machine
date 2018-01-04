@@ -21,6 +21,7 @@
     "flow": "./node_modules/.bin/flow check"
   },
   "dependencies": {
+    "null-logger": "^1.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
